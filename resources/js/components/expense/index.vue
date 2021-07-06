@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="row">
-			<router-link class="btn btn-primary" to="/store-category">Add Category</router-link>
+			<router-link class="btn btn-primary" to="/store-expense">Add Expense</router-link>
 		</div>
 		<br>
 		<input type="text" v-model="searchTerm" class="form-control" placeholder="Search..." style="width:300px;">
@@ -11,32 +11,34 @@
               <!-- Simple Tables -->
               <div class="card">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Category List</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Expense List</h6>
                 </div>
                 <div class="table-responsive">
                   <table class="table align-items-center table-flush">
                     <thead class="thead-light">
                       <tr>
-                        <th>Category Name</th>
-
+                        <th>Details</th>
+                        <th>Amount</th>
+                        <th>Expense Date</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="category in filtersearch" :key="category.id">
-                        <td>{{ category.category_name}}</td>
-                        
+                      <tr v-for="expense in filtersearch" :key="expense.id">
+                        <td>{{ expense.details}}</td>
+                        <td>{{ expense.amount}}</td>
+                        <td>{{ expense.expense_date}}</td>
                         <td>
-                          <a @click="deleteCategory(category.id)" class="btn btn-sm btn-danger">
-                            <font color="FFFFFF"><i class="fas fa-trash"></i></font>
+                           <a @click="deleteExpense(expense.id)" class="btn btn-danger btn-sm">
+                            <font color="FFFFFF"> <i class="fas fa-trash"></i></font>
                           </a>
-                        	<router-link :to="{name: 'edit-category', params:{id:category.id}}" class="btn btn-sm btn-info">
-                            <i class="fas fa-edit"></i>
+
+                          <router-link :to="{name: 'edit-expense', params:{id:expense.id}}" class="btn btn-info btn-sm">
+                              <i class="fas fa-edit"></i>
                           </router-link>
 
                         </td>
                       </tr>
-                       
                     </tbody>
                   </table>
                 </div>
@@ -58,25 +60,25 @@
     },
     data(){
     	return{
-    		categories:[],
+    		expenses:[],
     		searchTerm:''
     	}
     },
     computed:{
     	filtersearch(){
-    		return this.categories.filter(category => {
-    			return category.category_name.match(this.searchTerm)
+    		return this.expenses.filter(expense => {
+    			return expense.expense_date.match(this.searchTerm)
     		})
     	}
     },
 
     methods:{
-    	allCategory(){
-    		axios.get('/api/category/')
-    		.then(({data}) => (this.categories = data))
+    	allExpense(){
+    		axios.get('/api/expense/')
+    		.then(({data}) => (this.expenses = data))
     		.catch(console.log('error'))
     	},
-    	deleteCategory(id){
+    	deleteExpense(id){
     		Swal.fire({
 			  title: 'Are you sure?',
 			  text: "You won't be able to revert this!",
@@ -87,14 +89,14 @@
 			  confirmButtonText: 'Yes, delete it!'
 			}).then((result) => {
 			  if (result.isConfirmed) {
-			  	axios.delete('/api/category/'+id)
+			  	axios.delete('/api/expense/'+id)
 			  	.then(() =>{
-			  	this.suppliers = this.suppliers.filter(category =>{
-			  		return category.id != id
+			  	this.expenses = this.expenses.filter(expense =>{
+			  		return expense.id != id
 			  	})
 			  	})
 			  	.catch(() => {
-			  		this.$router.push({name: 'category'})
+			  		this.$router.push({name: 'expense'})
 			  	})
 			    Swal.fire(
 			      'Deleted!',
@@ -106,12 +108,12 @@
     	}
     },
     created(){
-    	this.allCategory();
+    	this.allExpense();
     }
   }
 </script>
 
 
 <style type="text/css">
-	 
+ 
 </style>

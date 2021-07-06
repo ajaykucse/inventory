@@ -8,10 +8,11 @@
   <meta name="author" content="">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
   <link href="{{ asset('backend/img/logo/logo.png')}}" rel="icon">
-  <title>RuangAdmin - Dashboard</title>
+  <title>Easy Inventory- Dashboard</title>
   <link href="{{ asset('backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{ asset('backend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{ asset('backend/css/ruang-admin.min.css')}}" rel="stylesheet">
+   
 </head>
 
 <body id="page-top">
@@ -29,13 +30,18 @@
         <div class="sidebar-brand-icon">
           <img src="{{ asset('backend/img/logo/logo2.png')}}">
         </div>
-        <div class="sidebar-brand-text mx-3">RuangAdmin</div>
+        <div class="sidebar-brand-text mx-3">Easy Inventory</div>
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
         <router-link class="nav-link" to="/home">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></router-link>
+      </li>
+      <li class="nav-item bg-info">
+        <router-link class="nav-link" to="/pos">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>POS</span></router-link>
       </li>
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
@@ -45,7 +51,7 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
           aria-expanded="true" aria-controls="collapseBootstrap">
           <i class="far fa-fw fa-window-maximize"></i>
-          <span>Employee</span>
+          <span>Employees</span>
         </a>
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
@@ -75,7 +81,7 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap2"
           aria-expanded="true" aria-controls="collapseBootstrap2">
           <i class="far fa-fw fa-window-maximize"></i>
-          <span>Category</span>
+          <span>Categories</span>
         </a>
         <div id="collapseBootstrap2" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
@@ -86,34 +92,99 @@
         </div>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap3"
+          aria-expanded="true" aria-controls="collapseBootstrap3">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Products</span>
+        </a>
+        <div id="collapseBootstrap3" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
 
+            <router-link class="collapse-item" to="/store-product">Add Product</router-link>
+            <router-link  class="collapse-item" to="/product">All Product</router-link>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap4"
+          aria-expanded="true" aria-controls="collapseBootstrap4">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Expenses</span>
+        </a>
+        <div id="collapseBootstrap4" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+
+            <router-link class="collapse-item" to="/store-expense">Add Expense</router-link>
+            <router-link  class="collapse-item" to="/expense">All Expense</router-link>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap6"
+          aria-expanded="true" aria-controls="collapseBootstrap6">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Customers</span>
+        </a>
+        <div id="collapseBootstrap6" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+
+            <router-link class="collapse-item" to="/store-customer">Add Customer</router-link>
+            <router-link  class="collapse-item" to="/customer">All Customer</router-link>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap5"
+          aria-expanded="true" aria-controls="collapseBootstrap5">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Salaries</span>
+        </a>
+        <div id="collapseBootstrap5" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+
+            <router-link class="collapse-item" to="/given-salary">Add Salary</router-link>
+            <router-link  class="collapse-item" to="/salary">All Salary</router-link>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap55"
+          aria-expanded="true" aria-controls="collapseBootstrap55">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Orders</span>
+        </a>
+        <div id="collapseBootstrap55" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+
+            <router-link class="collapse-item" to="/order">Today Order</router-link>
+            <router-link  class="collapse-item" to="/searchorder">Search</router-link>
+          </div>
+        </div>
+      </li>
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
-          aria-controls="collapseForm">
+        <router-link to="/stock" class="nav-link">
           <i class="fab fa-fw fa-wpforms"></i>
-          <span>Forms</span>
-        </a>
-        <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Forms</h6>
-            <a class="collapse-item" href="form_basics.html">Form Basics</a>
-            <a class="collapse-item" href="form_advanceds.html">Form Advanceds</a>
-          </div>
-        </div>
+          <span>Stock</span>
+        </router-link>
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
           aria-controls="collapseTable">
           <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span>
+          <span>Reports</span>
         </a>
         <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Tables</h6>
-            <a class="collapse-item" href="simple-tables.html">Simple Tables</a>
-            <a class="collapse-item" href="datatables.html">DataTables</a>
+
+            <a class="collapse-item" href="simple-tables.html">Report One</a>
+            <a class="collapse-item" href="datatables.html">Report Two</a>
           </div>
         </div>
       </li>
@@ -357,15 +428,15 @@
         <!---Container Fluid-->
       </div>
       <!-- Footer -->
-    <!--   <footer class="sticky-footer bg-white">
+      <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> - developed by
-              <b><a href="https://indrijunanda.gitlab.io/" target="_blank">indrijunanda</a></b>
+              <b><a href="https://ajaykucse.blogspot.com/" target="_blank">Er. Ajay Kumar Yadav</a></b>
             </span>
           </div>
         </div>
-      </footer> -->
+      </footer>
       <!-- Footer -->
     </div>
   </div>
@@ -390,7 +461,8 @@
   <script src="{{ asset('backend/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
   <script src="{{ asset('backend/js/ruang-admin.min.js')}}"></script>
   <script src="{{ asset('backend/vendor/chart.js/Chart.min.js')}}"></script>
-  <script src="{{ asset('backend/js/demo/chart-area-demo.js')}}"></script>  
+  <script src="{{ asset('backend/js/demo/chart-area-demo.js')}}"></script>
+  
 </body>
 
 </html>

@@ -4,9 +4,9 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Expense extends Model
 {
     protected $fillable = [
-        'category_name'
+        'details', 'amount'
     ];
 }

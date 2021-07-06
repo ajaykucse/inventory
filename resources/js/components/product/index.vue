@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="row">
-			<router-link class="btn btn-primary" to="/store-category">Add Category</router-link>
+			<router-link class="btn btn-primary" to="/store-product">Add Product</router-link>
 		</div>
 		<br>
 		<input type="text" v-model="searchTerm" class="form-control" placeholder="Search..." style="width:300px;">
@@ -11,29 +11,40 @@
               <!-- Simple Tables -->
               <div class="card">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Category List</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Product List</h6>
                 </div>
                 <div class="table-responsive">
                   <table class="table align-items-center table-flush">
                     <thead class="thead-light">
                       <tr>
-                        <th>Category Name</th>
-
+                        <th>Name</th>
+                        <th>Code</th>
+                        <th>Photo</th>
+                        <th>Category</th>
+                        <th>Buying Price</th>
+                        <th>Selling Price</th>
+                        <th>Root</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="category in filtersearch" :key="category.id">
-                        <td>{{ category.category_name}}</td>
-                        
+                      <tr v-for="product in filtersearch" :key="product.id">
+                        <td>{{ product.product_name}}</td>
+                        <td>{{ product.product_code}}</td>
+                        <td><img :src="product.image" id="pro_img"></td>
+                        <td>{{ product.category_name}}</td>
+                        <td>{{ product.buying_price}}</td>
+                        <td>{{ product.selling_price}}</td>
+                        <td>{{ product.root}}</td>
                         <td>
-                          <a @click="deleteCategory(category.id)" class="btn btn-sm btn-danger">
-                            <font color="FFFFFF"><i class="fas fa-trash"></i></font>
-                          </a>
-                        	<router-link :to="{name: 'edit-category', params:{id:category.id}}" class="btn btn-sm btn-info">
-                            <i class="fas fa-edit"></i>
+                          <router-link :to="{name: 'edit-product', params:{id:product.id}}" class="btn btn-info btn-sm">
+                              <i class="fas fa-edit"></i>
                           </router-link>
 
+                          <a @click="deleteProduct(product.id)" class="btn btn-danger btn-sm">
+                            <font color="FFFFFF"> <i class="fas fa-trash"></i></font>
+                          </a>
+                          
                         </td>
                       </tr>
                        
@@ -58,25 +69,25 @@
     },
     data(){
     	return{
-    		categories:[],
+    		products:[],
     		searchTerm:''
     	}
     },
     computed:{
     	filtersearch(){
-    		return this.categories.filter(category => {
-    			return category.category_name.match(this.searchTerm)
+    		return this.products.filter(product => {
+    			return product.product_name.match(this.searchTerm)
     		})
     	}
     },
 
     methods:{
-    	allCategory(){
-    		axios.get('/api/category/')
-    		.then(({data}) => (this.categories = data))
-    		.catch(console.log('error'))
+    	allProduct(){
+    		axios.get('/api/product/')
+    		.then(({data}) => (this.products = data))
+    		.catch()
     	},
-    	deleteCategory(id){
+    	deleteProduct(id){
     		Swal.fire({
 			  title: 'Are you sure?',
 			  text: "You won't be able to revert this!",
@@ -87,14 +98,14 @@
 			  confirmButtonText: 'Yes, delete it!'
 			}).then((result) => {
 			  if (result.isConfirmed) {
-			  	axios.delete('/api/category/'+id)
+			  	axios.delete('/api/product/'+id)
 			  	.then(() =>{
-			  	this.suppliers = this.suppliers.filter(category =>{
-			  		return category.id != id
+			  	this.products = this.products.filter(product =>{
+			  		return product.id != id
 			  	})
 			  	})
 			  	.catch(() => {
-			  		this.$router.push({name: 'category'})
+			  		this.$router.push({name: 'product'})
 			  	})
 			    Swal.fire(
 			      'Deleted!',
@@ -106,12 +117,15 @@
     	}
     },
     created(){
-    	this.allCategory();
+    	this.allProduct();
     }
   }
 </script>
 
 
 <style type="text/css">
-	 
+	#pro_img{
+		height: 40px;
+		width: 40px;
+	}
 </style>
